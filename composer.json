@@ -1,0 +1,39 @@
+{
+  "name": "phapi/middleware-route",
+  "description": "Middleware handling routing and dispatching to endpoints.",
+  "keywords": [
+    "middleware", "route", "router", "routing", "dispatch", "dispatcher", "phapi"
+  ],
+  "version": "1.0.0",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "homepage": "http://phapi.github.io",
+  "authors": [
+    {
+      "name": "Peter Ahinko",
+      "email": "peter@ahinko.se",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "phapi/contract": "dev-master",
+    "phapi/exception": "dev-master"
+  },
+  "require-dev": {
+    "phapi/http": "dev-master",
+    "phpunit/phpunit": "4.6.*",
+    "mockery/mockery": "0.9.*",
+    "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Phapi\\Middleware\\Route\\": "src/Phapi/Middleware/Route/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Phapi\\Tests\\Middleware\\Route\\": "tests/Phapi/Middleware/Route/"
+    }
+  }
+}
