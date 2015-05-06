@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "549bcc729b20ab5788c8d52b8ba4736a",
+    "hash": "05a90843121b0ef111afac886433dcd0",
     "packages": [
         {
             "name": "phapi/contract",
@@ -97,6 +97,52 @@
                 "phapi"
             ],
             "time": "2015-04-23 10:28:12"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "0.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "809419e498a388dfa7ef6898392431e5911a0289"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/809419e498a388dfa7ef6898392431e5911a0289",
+                "reference": "809419e498a388dfa7ef6898392431e5911a0289",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2015-05-04 20:20:08"
         }
     ],
     "packages-dev": [
@@ -423,18 +469,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phapi/http.git",
-                "reference": "0cff0481cf9d332fac56f1c1a4d7789d7b12cc85"
+                "reference": "26bc46c32e14e3af4afb32446bfa50cdd1864a57"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phapi/http/zipball/0cff0481cf9d332fac56f1c1a4d7789d7b12cc85",
-                "reference": "0cff0481cf9d332fac56f1c1a4d7789d7b12cc85",
+                "url": "https://api.github.com/repos/phapi/http/zipball/26bc46c32e14e3af4afb32446bfa50cdd1864a57",
+                "reference": "26bc46c32e14e3af4afb32446bfa50cdd1864a57",
                 "shasum": ""
             },
             "require": {
                 "phapi/contract": "dev-master",
                 "php": ">=5.5.0",
-                "psr/http-message": "0.10.*"
+                "psr/http-message": "0.11.*"
             },
             "require-dev": {
                 "codeclimate/php-test-reporter": "dev-master",
@@ -464,7 +510,7 @@
                 "phapi",
                 "psr-7"
             ],
-            "time": "2015-04-23 10:29:34"
+            "time": "2015-05-06 10:49:30"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -823,16 +869,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.6.5",
+            "version": "4.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1c54dd1d9a782d7c8715bb3604cde7b6e23c2614"
+                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1c54dd1d9a782d7c8715bb3604cde7b6e23c2614",
-                "reference": "1c54dd1d9a782d7c8715bb3604cde7b6e23c2614",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3afe303d873a4d64c62ef84de491b97b006fbdac",
+                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac",
                 "shasum": ""
             },
             "require": {
@@ -891,7 +937,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-29 05:04:43"
+            "time": "2015-04-29 15:18:52"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -947,52 +993,6 @@
                 "xunit"
             ],
             "time": "2015-04-02 05:36:41"
-        },
-        {
-            "name": "psr/http-message",
-            "version": "0.10.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "9723465b3e7c8ecb0436f066bfb8a13e1bac1789"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/http-message/zipball/9723465b3e7c8ecb0436f066bfb8a13e1bac1789",
-                "reference": "9723465b3e7c8ecb0436f066bfb8a13e1bac1789",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Psr\\Http\\Message\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "PHP-FIG",
-                    "homepage": "http://www.php-fig.org/"
-                }
-            ],
-            "description": "Common interface for HTTP messages",
-            "keywords": [
-                "http",
-                "http-message",
-                "psr",
-                "psr-7",
-                "request",
-                "response"
-            ],
-            "time": "2015-04-13 14:20:01"
         },
         {
             "name": "psr/log",

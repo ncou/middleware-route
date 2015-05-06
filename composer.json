@@ -18,7 +18,8 @@
   "require": {
     "php": ">=5.5.0",
     "phapi/contract": "dev-master",
-    "phapi/exception": "dev-master"
+    "phapi/exception": "dev-master",
+    "psr/http-message": "0.11.*"
   },
   "require-dev": {
     "phapi/http": "dev-master",
