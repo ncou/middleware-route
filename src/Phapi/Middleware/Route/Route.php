@@ -73,9 +73,7 @@ class Route implements Middleware
         $request = $request->withAttribute($this->requestAttribName, $this->router->getMatchedEndpoint());
 
         // Get all url params from router and add as attribute to request
-        foreach ($this->router->getParams() as $key => $value) {
-            $request = $request->withAttribute($key, $value);
-        }
+        $request = $request->withAttribute('routeParams', $this->router->getParams());
 
         // Call next middleware and return any response
         return $next($request, $response, $next);

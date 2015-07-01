@@ -42,7 +42,7 @@ class RouteTest extends TestCase
             function ($request, $response) {
                 $expected = [
                     'routeEndpoint' => 'Phapi\Endpoint\Home',
-                    'username' => 'phapi'
+                    'routeParams' => [ 'username' => 'phapi' ]
                 ];
                 $this->assertEquals($expected, $request->getAttributes());
 

@@ -102,7 +102,7 @@ class Dispatcher implements Middleware
         $endpoint = new $endpointName($request, $response, $this->container);
 
         // Call endpoint and method and retrieve the return body
-        $unserializedBody = $endpoint->$method();
+        $unserializedBody = call_user_func_array([$endpoint, $method], $request->getAttribute('routeParams', []));
 
         // Get updated response
         $response = $endpoint->getResponse();
