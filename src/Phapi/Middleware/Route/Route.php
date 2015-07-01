@@ -67,7 +67,7 @@ class Route implements Middleware
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         // Match request to route, error handling is done by the router itself
-        $this->router->match((string) $request->getUri(), $request->getMethod());
+        $this->router->match($request->getUri()->getPath(), $request->getMethod());
 
         // Get matched endpoint from router and add to request
         $request = $request->withAttribute($this->requestAttribName, $this->router->getMatchedEndpoint());
