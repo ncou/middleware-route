@@ -62,10 +62,11 @@ class DispatcherTest extends TestCase
 
         $request = new Request();
         $request = $request->withAttribute('routeEndpoint', '\\Phapi\\Tests\\Page');
+        $request = $request->withMethod('POST');
         $response = new Response();
 
         $this->setExpectedException('\Phapi\Exception\MethodNotAllowed');
-        $response = $dispatcher($request, $response, null);
+        $response = $dispatcher($request, $response, function ($request, $response) { return $response; });
     }
 
     public function testResponseNotCompatible()
