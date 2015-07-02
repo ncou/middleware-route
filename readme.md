@@ -1,9 +1,9 @@
 # Route Middleware
-The Route Middleware contains two middleware: <code>Phapi\Middleware\Route\Route</code> and <code>Phapi\Middleware\Route\Dispatch</code> that handles routing and dispatch to [endpoints](https://github.com/phapi/endpoint).
+The Route Middleware package contains two middleware: <code>Phapi\Middleware\Route\Route</code> and <code>Phapi\Middleware\Route\Dispatch</code> that handles routing and dispatch to [endpoints](https://github.com/phapi/endpoint).
 
 The Route Middleware will invoke the first route that matches the current HTTP request’s URI and method. If the request URI doesn't match any defined route a **404 Not Found** will be returned to the client. If the request method isn't implemented a **405 Method Not Allowed** will be returned instead.
 
-The router does three things to be able to find a match, first it tries to find a direct match. This is possible for routes that doesn't contain regex. If no direct match can be found the router will look in it's cache for a match. As a last resort the router tries to match against the routes that contains regex. If a match is found it will be added to the cache.
+The router does three things to be able to find a match, first it tries to find a direct match. This is possible for routes that doesn't contain regular expressions. If no direct match can be found the router will look in it's cache for a match. As a last resort the router tries to match against the routes that contains regular expressions. If a match is found it will be added to the cache.
 
 ## Installation
 This middleware is by default included in the [Phapi Framework](https://github.com/phapi/phapi) but if you need to install it it's available to install via [Packagist](https://packagist.org) and [Composer](https://getcomposer.org).
@@ -14,11 +14,12 @@ $ php composer.phar require phapi/middleware-route:1.*
 
 ## Configuration
 The configuration contains three steps:
-- Create the middleware objects
+
+- Create middleware objects
 - Define routes
 - Add to pipeline
 
-### Create middleware
+### Create middleware objects
 
 ```php
 <?php
@@ -69,7 +70,7 @@ $pipeline->pipe(new \Phapi\Middleware\Route\Dispatcher());
 
 ```
 
-### Summary
+### Complete example
 
 ```php
 <?php
@@ -95,6 +96,8 @@ $route->addRoutes($routes);
 $pipeline->pipe($route);
 $pipeline->pipe(new \Phapi\Middleware\Route\Dispatcher());
 ```
+
+See the [configuration documentation](http://phapi.github.io/started/configuration/) for more information about how to configure the integration with the Phapi Framework.
 
 ## Phapi
 This middleware is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi). The middleware are also [PSR-7](https://github.com/php-fig/http-message) compliant and implements the [Phapi Middleware Contract](https://github.com/phapi/contract).
