@@ -210,7 +210,8 @@ class Router
                     $this->matchedRoute = $cachedRoutes[$this->requestUri]['matchedRoute'];
                     $this->matchedEndpoint = $cachedRoutes[$this->requestUri]['matchedEndpoint'];
                     $this->matchedMethod  = $this->requestMethod;
-                    $this->params  = (isset($cachedRoutes[$this->requestUri]['params'])) ? $cachedRoutes[$this->requestUri]['params'] : [];
+                    $this->params  = (isset($cachedRoutes[$this->requestUri]['params'])) ?
+                        $cachedRoutes[$this->requestUri]['params'] : [];
 
                     // no need to look for more
                     return true;
