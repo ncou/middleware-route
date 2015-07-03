@@ -4,8 +4,6 @@ namespace Phapi\Tests\Middleware\Route;
 
 require_once __DIR__ .'/TestAssets/Page.php';
 
-use Phapi\Http\Request;
-use Phapi\Http\Response;
 use Phapi\Middleware\Route\Dispatcher;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -23,10 +21,13 @@ class DispatcherTest extends TestCase
         $dispatcher = new Dispatcher();
         $dispatcher->setContainer($container);
 
-        $request = new Request();
-        $request = $request->withAttribute('routeEndpoint', '\\Phapi\\Tests\\Page');
-        $request = $request->withMethod('GET');
-        $response = new Response();
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getAttribute')->with('routeEndpoint', '')->andReturn('\\Phapi\\Tests\\Page');
+        $request->shouldReceive('getMethod')->andReturn('GET');
+        $request->shouldReceive('getAttribute')->with('routeParams', [])->andReturn([]);
+
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('withUnserializedBody')->with([ 'id' => 123456 ])->andReturnSelf();
 
         $response = $dispatcher(
             $request,
@@ -35,8 +36,6 @@ class DispatcherTest extends TestCase
                 return $response;
             }
         );
-
-        $this->assertEquals(['id' => 123456], $response->getUnserializedBody());
     }
 
     public function testEndpointDoesNotExists()
@@ -47,8 +46,11 @@ class DispatcherTest extends TestCase
         $dispatcher = new Dispatcher();
         $dispatcher->setContainer($container);
 
-        $request = new Request();
-        $response = new Response();
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getAttribute')->with('routeEndpoint', '')->andReturn('');
+        $request->shouldReceive('getMethod')->andReturn('POST');
+
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
 
         $this->setExpectedException('\Phapi\Exception\NotFound');
         $response = $dispatcher($request, $response, null);
@@ -62,10 +64,11 @@ class DispatcherTest extends TestCase
         $dispatcher = new Dispatcher();
         $dispatcher->setContainer($container);
 
-        $request = new Request();
-        $request = $request->withAttribute('routeEndpoint', '\\Phapi\\Tests\\Page');
-        $request = $request->withMethod('POST');
-        $response = new Response();
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getAttribute')->with('routeEndpoint', '')->andReturn('\\Phapi\\Tests\\Page');
+        $request->shouldReceive('getMethod')->andReturn('POST');
+
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
 
         $this->setExpectedException('\Phapi\Exception\MethodNotAllowed');
         $response = $dispatcher($request, $response, function ($request, $response) { return $response; });
@@ -78,7 +81,11 @@ class DispatcherTest extends TestCase
         $dispatcher = new Dispatcher();
         $dispatcher->setContainer($container);
 
-        $request = new Request();
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getAttribute')->with('routeEndpoint', '')->andReturn('\\Phapi\\Tests\\Page');
+        $request->shouldReceive('getMethod')->andReturn('GET');
+        $request->shouldReceive('getAttribute')->with('routeParams', [])->andReturn([]);
+
         $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
 
         $this->setExpectedException('\RuntimeException', 'The dispatcher middleware requires a response object that can handle unserialized body.');

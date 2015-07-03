@@ -76,13 +76,6 @@ class Dispatcher implements Middleware
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        // Do we have access to a response class that can handle unserialized bodies?
-        if (!method_exists($response, 'getUnserializedBody')) {
-            throw new \RuntimeException(
-                'The dispatcher middleware requires a response object that can handle unserialized body.'
-            );
-        }
-
         // Get the endpoint class name set by the router, use the provided attribute name
         $endpointName = $request->getAttribute($this->requestAttribName, '');
         // Get request method
@@ -113,7 +106,14 @@ class Dispatcher implements Middleware
         // called endpoint instead.
         if (is_array($unserializedBody) && !empty($unserializedBody)) {
             // Set the unserialized body to the response object
-            $response = $response->withUnserializedBody($unserializedBody);
+            try {
+                $response = $response->withUnserializedBody($unserializedBody);
+            } catch (\Exception $e) {
+                // We don't have access to a response class that can handle unserialized bodies
+                throw new \RuntimeException(
+                    'The dispatcher middleware requires a response object that can handle unserialized body.'
+                );
+            }
         }
 
         // Call next middleware and return the response
