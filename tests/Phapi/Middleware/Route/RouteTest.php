@@ -2,8 +2,6 @@
 
 namespace Phapi\Tests\Middleware\Route;
 
-use Phapi\Http\Request;
-use Phapi\Http\Response;
 use Phapi\Middleware\Route\Route;
 use PHPUnit_Framework_TestCase as TestCase;
 
@@ -33,22 +31,25 @@ class RouteTest extends TestCase
         $router->shouldReceive('getParams')->andReturn([ 'username' => 'phapi' ]);
         $router->shouldReceive('addRoutes')->withArgs([$routes]);
 
+        $response = \Mockery::mock('Psr\Http\Message\ResponseInterface');
+
+        $request = \Mockery::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getUri')->andReturnSelf();
+        $request->shouldReceive('getPath')->andReturn('/');
+        $request->shouldReceive('getMethod')->andReturn('GET');
+        $request->shouldReceive('withAttribute')->withArgs([ 'routeEndpoint', 'Phapi\Endpoint\Home' ])->andReturnSelf();
+        $request->shouldReceive('withAttribute')->withArgs([ 'routeParams', ['username' => 'phapi']])->andReturnSelf();
+
         $route = new Route($router);
         $route->addRoutes($routes);
 
         $response = $route(
-            new Request(),
-            new Response(),
+            $request,
+            $response,
             function ($request, $response) {
-                $expected = [
-                    'routeEndpoint' => 'Phapi\Endpoint\Home',
-                    'routeParams' => [ 'username' => 'phapi' ]
-                ];
-                $this->assertEquals($expected, $request->getAttributes());
 
                 return $response;
             }
         );
     }
-
 }
