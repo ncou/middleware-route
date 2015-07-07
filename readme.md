@@ -6,7 +6,7 @@ The Route Middleware will invoke the first route that matches the current HTTP r
 The router does three things to be able to find a match, first it tries to find a direct match. This is possible for routes that doesn't contain regular expressions. If no direct match can be found the router will look in it's cache for a match. As a last resort the router tries to match against the routes that contains regular expressions. If a match is found it will be added to the cache.
 
 ## Installation
-This middleware is by default included in the [Phapi Framework](https://github.com/phapi/phapi) but if you need to install it it's available to install via [Packagist](https://packagist.org) and [Composer](https://getcomposer.org).
+This middleware is by default included in the [Phapi Framework](https://github.com/phapi/phapi-framework) but if you need to install it it's available to install via [Packagist](https://packagist.org) and [Composer](https://getcomposer.org).
 
 ```shell
 $ php composer.phar require phapi/middleware-route:1.*
@@ -100,7 +100,7 @@ $pipeline->pipe(new \Phapi\Middleware\Route\Dispatcher());
 See the [configuration documentation](http://phapi.github.io/docs/started/configuration/) for more information about how to configure the integration with the Phapi Framework.
 
 ## Phapi
-This middleware is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi). The middleware are also [PSR-7](https://github.com/php-fig/http-message) compliant and implements the [Phapi Middleware Contract](https://github.com/phapi/contract).
+This middleware is a Phapi package used by the [Phapi Framework](https://github.com/phapi/phapi-framework). The middleware are also [PSR-7](https://github.com/php-fig/http-message) compliant and implements the [Phapi Middleware Contract](https://github.com/phapi/contract).
 
 ## License
 The Route Middleware is licensed under the MIT License - see the [license.md](https://github.com/phapi/middleware-route/blob/master/license.md) file for details
