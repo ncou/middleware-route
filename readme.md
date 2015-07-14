@@ -1,4 +1,9 @@
 # Route Middleware
+
+[![Build status](https://img.shields.io/travis/phapi/middleware-route.svg?style=flat-square)](https://travis-ci.org/phapi/middleware-route)
+[![Code Climate](https://img.shields.io/codeclimate/github/phapi/middleware-route.svg?style=flat-square)](https://codeclimate.com/github/phapi/middleware-route)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/phapi/middleware-route.svg?style=flat-square)](https://codeclimate.com/github/phapi/middleware-route/coverage)
+
 The Route Middleware package contains two middleware: <code>Phapi\Middleware\Route\Route</code> and <code>Phapi\Middleware\Route\Dispatch</code> that handles routing and dispatch to [endpoints](https://github.com/phapi/endpoint).
 
 The Route Middleware will invoke the first route that matches the current HTTP request’s URI and method. If the request URI doesn't match any defined route a **404 Not Found** will be returned to the client. If the request method isn't implemented a **405 Method Not Allowed** will be returned instead.
