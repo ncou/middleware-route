@@ -65,6 +65,31 @@ By default a route pattern syntax is used where **{foo}** specified a placeholde
 :h => :[a-fA-F0-9]+       # hex
 ```
 
+#### Get params in an Endpoint
+The router will inject the params in to the called method on the Endpoint. Lets use this route as an example:
+
+```php
+<?php
+$routes = [
+  '/users/{name:a}'         => '\\Phapi\\Endpoint\\User',
+];
+```
+
+If we want to get the <code>name</code> value from <code>/users/phapi</code> we need to specify an endpoint looking like this:
+
+```php
+<?php
+
+class User extends Endpoint {
+
+  public function get($name) // $name will contain 'phapi'
+  {
+    ...
+  }
+}
+
+```
+
 ### Add to pipeline
 Last but not least, add the middleware to the pipeline. The <code>Dispatcher</code> doesn't need any configuration.
 
