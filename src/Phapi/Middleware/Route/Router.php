@@ -150,7 +150,7 @@ class Router
     {
         // Create variable used to keep track on progress
         $endpoint = false;
-        
+
         // check without a trailing slash
         if (isset($this->routes[$this->requestUri])) {
             $endpoint = $this->routes[$this->requestUri];

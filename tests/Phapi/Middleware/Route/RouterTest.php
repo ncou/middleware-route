@@ -80,7 +80,7 @@ class RouterTest extends TestCase
     public function testCacheMatchFail()
     {
         $cached = [
-            '/color/54/' => [
+            '/color/54' => [
                 'matchedRoute' => '/color/{id:h}',
                 'matchedEndpoint' => '\\Phapi\\Tests\\Color'
             ]
