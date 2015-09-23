@@ -22,14 +22,14 @@ class RouterTest extends TestCase
     {
         $this->routes = [
             '/' => '\\Phapi\\Tests\\Home',
-            '/users/' => '\\Phapi\\Tests\\Users',
-            '/users/{name:a}/' => '\\Phapi\\Tests\\User',
-            '/articles/{id:[0-9]+}/' => '\\Phapi\\Tests\\Article',
-            '/color/{id:h}/' => '\\Phapi\\Tests\\Color',
-            '/products/{name}/' => '\\Phapi\\Tests\\Product',
-            '/products/' => '\\Phapi\\Tests\\Products',
-            '/blog/{date:c}?/{title:c}?/' => '\\Phapi\\Tests\\Blog\\Post',
-            '/page/{slug}/{id:[0-9]+}?/' => '\\Phapi\\Tests\\Page',
+            '/users' => '\\Phapi\\Tests\\Users',
+            '/users/{name:a}' => '\\Phapi\\Tests\\User',
+            '/articles/{id:[0-9]+}' => '\\Phapi\\Tests\\Article',
+            '/color/{id:h}' => '\\Phapi\\Tests\\Color',
+            '/products/{name}' => '\\Phapi\\Tests\\Product',
+            '/products' => '\\Phapi\\Tests\\Products',
+            '/blog/{date:c}?/{title:c}?' => '\\Phapi\\Tests\\Blog\\Post',
+            '/page/{slug}/{id:[0-9]+}?' => '\\Phapi\\Tests\\Page',
         ];
     }
 
@@ -60,7 +60,7 @@ class RouterTest extends TestCase
     public function testCacheMatchSuccess()
     {
         $cached = [
-            '/users/phapi/' => [
+            '/users/phapi' => [
                 'matchedRoute' => '/users/{name:a}',
                 'matchedEndpoint' => '\\Phapi\\Tests\\Users'
             ]
@@ -74,7 +74,7 @@ class RouterTest extends TestCase
 
         $this->assertInstanceOf('Phapi\Middleware\Route\Router', $router);
 
-        $this->assertTrue($router->match('/users/phapi', 'GET'));
+        $this->assertTrue($router->match('/users/phapi/', 'GET'));
     }
 
     public function testCacheMatchFail()
@@ -101,7 +101,7 @@ class RouterTest extends TestCase
     public function testCacheMatchFail2()
     {
         $cached = [
-            '/users/phapi/' => [
+            '/users/phapi' => [
                 'matchedRoute' => '/users/{name:a}',
                 'matchedEndpoint' => '\\Phapi\\Tests\\Users'
             ]
@@ -127,8 +127,8 @@ class RouterTest extends TestCase
         $cache->shouldReceive('set')->withArgs([
             'routeMiddlewareRoutes',
             [
-                '/page/slug/56789/' => [
-                    'matchedRoute' => '/page/{slug}/{id:[0-9]+}?/',
+                '/page/slug/56789' => [
+                    'matchedRoute' => '/page/{slug}/{id:[0-9]+}?',
                     'matchedEndpoint' => '\\Phapi\\Tests\\Page',
                     'params' => [
                         'slug' => 'slug',
@@ -204,7 +204,7 @@ class RouterTest extends TestCase
      */
     public function testGetMatchedRoute(Router $router)
     {
-        $this->assertEquals('/page/{slug}/{id:[0-9]+}?/', $router->getMatchedRoute());
+        $this->assertEquals('/page/{slug}/{id:[0-9]+}?', $router->getMatchedRoute());
         $this->assertNotEquals('/articles/{id:[0-9]+}/', $router->getMatchedRoute());
     }
 

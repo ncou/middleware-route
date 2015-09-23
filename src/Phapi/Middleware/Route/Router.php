@@ -117,7 +117,7 @@ class Router
     public function match($requestUri, $requestMethod)
     {
         // remove query string and trailing slash (if one exists) and then add a new trailing slash
-        $this->requestUri = rtrim(strtok($requestUri, '?'), '/') . '/';
+        $this->requestUri = rtrim(strtok($requestUri, '?'), '/');
 
         // set request method
         $this->requestMethod = $requestMethod;
@@ -150,7 +150,7 @@ class Router
     {
         // Create variable used to keep track on progress
         $endpoint = false;
-
+        
         // check without a trailing slash
         if (isset($this->routes[$this->requestUri])) {
             $endpoint = $this->routes[$this->requestUri];
@@ -360,7 +360,8 @@ class Router
         foreach ($routes as $route => $endpoint) {
             // Add route as key. Use rtrim to remove any existing trailing slash, and then
             // add a new trailing slash
-            $this->routes[rtrim($route, '/') .'/'] = $endpoint;
+            $route = ($route !== '/') ? rtrim($route, '/') : '/';
+            $this->routes[$route] = $endpoint;
         }
     }
 
