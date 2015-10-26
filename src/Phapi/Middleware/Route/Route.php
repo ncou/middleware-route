@@ -76,7 +76,7 @@ class Route implements Middleware
         $request = $request->withAttribute('routeParams', $this->router->getParams());
         
         // Get the matched route from the router and add it as an attribute to the request
-        $request = $request->withAttribute('routeRoute', $this->route->getMatchedRoute());
+        $request = $request->withAttribute('routeRoute', $this->router->getMatchedRoute());
 
         // Call next middleware and return any response
         return $next($request, $response, $next);
