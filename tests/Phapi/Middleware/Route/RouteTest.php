@@ -28,6 +28,7 @@ class RouteTest extends TestCase
         $router = \Mockery::mock('Phapi\Middleware\Route\Router');
         $router->shouldReceive('match')->andReturn(true);
         $router->shouldReceive('getMatchedEndpoint')->andReturn('Phapi\Endpoint\Home');
+        $router->shouldReceive('getMatchedRoute')->andReturn('/');
         $router->shouldReceive('getParams')->andReturn([ 'username' => 'phapi' ]);
         $router->shouldReceive('addRoutes')->withArgs([$routes]);
 
