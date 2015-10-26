@@ -39,6 +39,7 @@ class RouteTest extends TestCase
         $request->shouldReceive('getMethod')->andReturn('GET');
         $request->shouldReceive('withAttribute')->withArgs([ 'routeEndpoint', 'Phapi\Endpoint\Home' ])->andReturnSelf();
         $request->shouldReceive('withAttribute')->withArgs([ 'routeParams', ['username' => 'phapi']])->andReturnSelf();
+        $request->shouldReceive('withAttribute')->withArgs([ 'routeRoute', '/'])->andReturnSelf();
 
         $route = new Route($router);
         $route->addRoutes($routes);
